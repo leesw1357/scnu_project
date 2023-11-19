@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+
+    <title>순행</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/src/main/resources/static/index.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+
+    <!--sidebar-->
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/css/style3.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        /*사이드바 스타일*/
+        .sidebar {
+            height: 93%;
+            width: 0px;
+            z-index: 15;
+            top: 0;
+            left: 0;
+            background-color: white;
+            overflow-x: hidden;
+            transition: 0.3s;/*펼침속도*/
+            padding-top: 60px;
+            position: absolute;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+        /*필터*/
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            top: 20%;
+            display: none;
+            position: absolute;
+            width: 100px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            opacity:0.8;
+            background-color: transparent;
+        }
+
+        .dropdown-content a:hover {
+            background-color: transparent;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            background-color: transparent;
+        }
+
+        .dropcon {
+            border: none;
+            text-align: center;
+            font-size: 14px;
+            background-color: #A5D8FA;
+            border-radius: 16px;
+            width: 100px;
+        }
+        /*메뉴열기 hover 시*/
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+
+        .sidebar .closebtn {
+            position: absolute;
+            width: 250px;
+            top:2%;
+            font-size: 25px;
+            margin-left: 0;
+            text-align : left;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .sidebarclose{
+            margin-left: 80px;
+            margin-bottom: 5px;
+        }
+        .menu-content{
+            margin-top : 12%;
+        }
+
+        .openbtn {
+            font-size: 15px;
+            cursor: pointer;
+            background: white;
+            border-radius: 20%;
+            border-width: 5px;
+            color: white;
+            position:absolute;top:10px;left:10px;width:80px;height:75px;overflow:hidden;z-index:1;
+
+
+        }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+        #main {
+            transition: margin-left 0.4s;
+            padding: 16px;
+        }
+
+
+        /*지도 =- 버튼*/
+        .map_wrap {position:relative;overflow:hidden;width:100%;height:100vh;}
+
+        .custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
+        .custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
+        .custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
+        .custom_typecontrol .selected_btn:hover {color:#fff;}
+        /* 줌  + -키 css 설정 */
+        .custom_zoomcontrol {position:absolute;top:200px;right:10px;width:50px;height:100px;overflow:hidden;z-index:1; background-color: rgba(0,0,0,0);}
+        .custom_zoomcontrol span {display:block;width:50px;height:50px;text-align:center;cursor:pointer;  }
+        .custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf; }
+
+
+        /*사이드바 로그아웃 버튼*/
+        .logout-button{
+            border: none;
+            background-color: skyblue;
+        }
+
+        p{
+            font-weight: 900;
+            font-size: large;
+        }
+        /*아이콘*/
+        .bi{
+            width: 32px;
+            height: 32px;
+            font-size: 28px;
+
+        }
+
+        #main{
+            width:100%;
+            height:100%;
+            position:relative;
+            overflow:hidden;
+        }
+        .cl{
+            width: 25px;
+            height: 25px;
+        }
+
+        /*네비바*/
+        .mainwidget{
+            display: flex;
+            position: fixed;
+            justify-content: space-between;
+            width: 100%;
+            height: 78px;
+            border-radius: 20px 20px 0px 0px;
+            margin-top: -65px;
+
+            background-color: white;
+            z-index: 1;
+            padding: 16px 16px 16px 16px;
+
+        }
+        /*내 위치 고정 버튼*/
+        .custom_geolocation {
+            position:absolute;
+            top:300px;right:10px;
+            width:50px;
+            height:50px;
+            overflow:hidden;
+            z-index:1;
+            background-color: rgba(0, 0, 0, 0);
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+    <link rel="stylesheet" href="../../../static/css/album.css">
+
+
+</head>
+
+
+
+<body>
+
+<div class="map_wrap">
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    <div class="mainwidget">
+        <a href="/scnu/main" style="color:black;"><i class="bi bi-house-door"></i></a>
+        <a href="/scnu/" style="color:black;"><i class="bi bi-journal-album"></i></a>
+        <a href="" style="color:black;"><i class="bi bi-chat-left"></i></a>
+        <button class="opensidebar" onclick="openMenu()"><i class="bi bi-list"></i></button>
+    </div>
+    <div id="main">
+    </div>
+
+    <!--사이드 메뉴 영역-->
+    <div class="sidebar">
+        <div class="closebtn">
+            <img src="/img/mark.png" >
+            <span>순행</span>
+            <span class="sidebarclose" onclick="closeMenu()"><img src="/img/xbox.png" style="width: 25px;height: 25px"></span>
+        </div>
+        <ul class="nav nav-pills flex-column mb-auto menu-content">
+            <li class="nav-item">
+                <a href="/scnu" class="nav-link link-dark" aria-current="page">
+                    <i class="bi bi-door-open"></i>
+                    &nbsp전체글보기
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/scnu/club" class="nav-link link-dark" aria-current="page">
+                    <i class="bi bi-door-open"></i>
+                    &nbsp동아리
+                </a>
+            </li>
+            <li>
+                <a href="/scnu/school" class="nav-link link-dark">
+                    <i class="bi bi-door-open-fill"></i>
+                    &nbsp학교 행사
+                </a>
+            </li>
+            <li>
+                <a href="/scnu/student" class="nav-link link-dark">
+                    <i class="bi bi-door-closed-fill"></i>
+                    &nbsp학생회 행사
+                </a>
+            </li>
+            <li>
+                <a href="/scnu/scholarship" class="nav-link link-dark">
+                    <i class="bi bi-door-closed"></i>
+                    &nbsp장학금
+                </a>
+            </li>
+            <li>
+                <a href="/scnu/extracurricular" class="nav-link link-dark">
+                    <i class="bi bi-door-closed"></i>
+                    &nbsp비교과
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="bi bi-calendar"></i>
+                    &nbsp캘린더
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="bi bi-chat"></i>
+                    &nbsp채팅
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="bi bi-bookmark-dash"></i>
+                    내가쓴글
+                </a>
+            </li>
+
+
+        </ul>
+
+
+        <hr>
+        <div class="app-info-dropdown">
+            <i class="bi bi-gear" style="margin-left: 35px;"></i><button id="app-info-button">앱 정보</button>
+            <div class="app-info-content">
+                <!-- 다양한 앱 정보 항목을 표시할 수 있음 -->
+                <form th:action="@{/logout}" method="post">
+                    <button  class="logout-button" onclick="location.href='/'" type="submit" >
+                        로그아웃
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 앱 정보 버튼을 클릭하면 드롭다운 메뉴를 열고 닫는 이벤트 핸들러를 추가합니다.
+    document.getElementById("app-info-button").addEventListener("click", function () {
+        var dropdown = document.querySelector(".app-info-content");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    });
+
+    // 다른 곳을 클릭하면 드롭다운 메뉴를 닫습니다.
+    window.addEventListener("click", function (event) {
+        var dropdown = document.querySelector(".app-info-content");
+        if (!event.target.matches("#app-info-button")) {
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            }
+        }
+    });
+</script>
+
+<!--화면영역-->
+
+<script>
+    function openMenu() {
+        document.getElementById("main").style.marginLeft = "250px";
+        document.querySelector('.sidebar').style.width = "250px";
+        document.querySelector('.opensidebar').style.display = 'none';
+    }
+
+    function closeMenu() {
+        document.getElementById("main").style.marginLeft= "0";
+        document.querySelector('.sidebar').style.width = "0";
+        document.querySelector('.opensidebar').style.display = 'block';
+    }
+</script>
+<div class="dropdown"
+     style="top:8px; left:5%; height : 45px; width : 40px; position: fixed; z-index: 3; display: flex;">
+    <button class="dropbtn" style="width: 40px; height: 45px; border: none; background-color: rgba(0,0,0,0);"><img style="width: 40px; height: 45px;" src="/img/filter.png"></button>
+    <div class="dropdown-content" style="text-align: left; top:123%; background-color: transparent;">
+
+        <form method="get" action="/scnu/main/club"><button type="submit" class="dropcon">동아리</button></form>
+        <form method="get" action="/scnu/main/school"><button type="submit" class="dropcon">학교행사</button></form>
+        <form method="get" action="/scnu/main/student"><button type="submit" class="dropcon">학생회행사</button></form>
+        <form method="get" action="/scnu/main/scholarship"><button type="submit" class="dropcon">장학금</button></form>
+        <form method="get" action="/scnu/main/extracurricular"><button type="submit" class="dropcon">비교과</button></form>
+    </div>
+</div>
+
+<!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+<div class="custom_zoomcontrol">
+    <span onclick="zoomIn()"><img src="/img/plus.png" alt="확대"></span>
+    <span onclick="zoomOut()"><img src="/img/minus.png" alt="축소"></span>
+</div>
+<div class="custom_geolocation">
+    <i class="bi bi-geo-alt"></i>
+</div>
+</div>
+
+
+
+
+
+</body>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64810ef38e28e2efe96520c8a962ec06"></script>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(34.968901, 127.479367), // 지도의 중심좌표
+            level: 4 // 지도의 확대 레벨
+        };
+
+
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+
+
+    // 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+    function zoomIn() {
+        map.setLevel(map.getLevel() - 1);
+    }
+
+    // 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+    function zoomOut() {
+        map.setLevel(map.getLevel() + 1);
+    }
+
+
+    var imageSrc = "/img/marker.png";
+
+    var positions = [];
+    fetch('/api/main/')
+        .then(function(response) {
+            if (response.ok) {
+                return response.json(); // JSON 형식의 데이터를 받아올 때
+                // 또는 return response.text(); // 텍스트 데이터를 받아올 때
+            }
+            throw new Error('네트워크 상태가 좋지 않습니다.');
+        })
+        .then(function(data) {
+            // 데이터를 활용하여 작업을 수행
+            for(var i = 0;i<Object.keys(data).length;i++){
+                var content = {
+                    title: data[i].title,
+                    latlng: new kakao.maps.LatLng(data[i].latitude, data[i].longitude),
+                    imgsrc : data[i].filepath,
+                    place : data[i].place,
+                    info : data[i].info,
+                    id : data[i].id,
+                    latituded: data[i].latitude,
+                    category: data[i].category
+                }
+                positions.push(content);
+                console.log(positions)
+            };
+
+            for(var i=0;i<positions.length;i++){
+
+                var imageSize = new kakao.maps.Size(24, 35);
+
+                // 마커 이미지를 생성합니다
+                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                // 마커를 생성합니다
+                var marker = new kakao.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: positions[i].latlng, // 마커를 표시할 위치
+                    title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    image : markerImage // 마커 이미지
+                });
+                var data = positions[i];
+                displayMarker(data);
+            }
+
+
+            function displayMarker(data){
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: data.latlng
+                })
+                console.log(data);
+                var overlay = new kakao.maps.CustomOverlay({
+                    position: marker.getPosition()
+                });
+                var content = document.createElement('div');
+                content.setAttribute("class","wrap");
+
+                var info = document.createElement('div');
+                info.setAttribute("class","info");
+                content.appendChild(info);
+
+                var title = document.createElement('div');
+                title.setAttribute("class","title");
+                title.setAttribute("style","background-color: #A5D8FA;");
+                info.appendChild(title);
+                title.innerHTML = data.title ;
+
+                var close = document.createElement('btn');
+                close.setAttribute("class","abc");
+                close.style.backgroundColor= "red";
+                close.setAttribute("style",
+                    "border: none;\n" +
+                    "text-align: center;\n" +
+                    "float : right\n"
+                )
+                close.innerHTML='닫기';
+                title.appendChild(close);
+
+                var body = document.createElement('div');
+                body.setAttribute("class","body");
+                info.appendChild(body);
+
+                var img = document.createElement('div');
+                body.appendChild(img);
+                img.setAttribute("class","img");
+
+                var imgsrg = document.createElement('img')
+                img.appendChild(imgsrg);
+                imgsrg.setAttribute("src",data.imgsrc);
+                imgsrg.setAttribute("style","position: absolute;top: 0px;left: 0px;width: 73px;height: 71px;border: 0px solid #ddd;color: #888;overflow: hidden;");
+
+                var desc = document.createElement('div');
+                body.appendChild(desc);
+                desc.setAttribute("class","desc");
+
+                var ellipsis = document.createElement('div');
+                desc.appendChild(ellipsis);
+                ellipsis.setAttribute("class","ellipsis");
+                ellipsis.innerHTML = data.info;
+
+                var jibun_ellipsis =document.createElement('div');
+                desc.appendChild(jibun_ellipsis);
+                jibun_ellipsis.setAttribute("class","jibun ellipsis");
+                jibun_ellipsis.innerHTML = data.place;
+
+                var sang = document.createElement('a');
+                desc.appendChild(sang);
+                sang.setAttribute("href","/scnu/"+data.category +"/"+data.id);
+                sang.setAttribute("class","link");
+                sang.innerHTML = "상세보기";
+
+
+
+
+                close.onclick = function () {
+                    overlay.setMap(null);
+                }
+                overlay.setContent(content);
+
+                kakao.maps.event.addListener(marker, 'click', function() {
+                    overlay.setMap(map);
+                });
+            }
+
+
+
+        })
+
+
+
+        .catch(function(error) {
+            console.log('오류가 발생했습니다.', error);
+        });
+
+</script>
+
+
+</html>

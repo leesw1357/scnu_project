@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/view.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>순행</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/src/main/resources/static/index.js"></script>
+    <!-- 글꼴 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+
+    <style>
+        /*<!--전체화면-->*/
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Hi Melody';
+            font-size: 20px;
+        }
+        /*상단부분*/
+        header{
+            position: fixed;
+            z-index: 2;
+            width: 100%;
+            background-color: white;
+        }
+        #main{
+            text-align: center;
+            padding: 10px 5px 5px 5px;
+        }
+        /*몸통부분*/
+        .al {
+            margin: 8px 16px;
+        }
+        /*상세보기 드롭다운*/
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            right: -50%;
+            top: 20%;
+            display: none;
+            position: absolute;
+            min-width: 50px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            opacity:0.8;
+            background-color: transparent;
+        }
+
+        .dropdown-content a:hover {
+            background-color: transparent;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            background-color: transparent;
+        }
+
+        /*댓글 css*/
+        .card{
+            background-color: white;
+            margin: 0px -16px 0px 16px;
+        }
+        .comid {
+            display: block;
+            width: 100%;
+            font-weight: bold;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #dee2e6;
+            border-radius: 6px;
+
+        }
+
+        .comtext {
+            width: 100%;
+            height: 50px;
+        / margin: 8 px 16 px;
+        / padding: 16 px;
+            border-radius: 4px;
+            border: none;
+            color: black;
+            background-color: #A5D8FA;
+        }
+
+        input::placeholder {
+            color: black;
+        }
+
+        .comclose {
+            border: none;
+            right: 4%;
+            text-align: center;
+            font-size: 14px;
+            width: 50px;
+            height: 30px;
+            background-color: #A5D8FA;
+            border-radius: 16px;
+        " position: relative
+
+        }
+
+        .comedit {
+            border: none;
+            right: 4%;
+            text-align: center;
+            font-size: 14px;
+            width: 50px;
+            height: 30px;
+            background-color: #A5D8FA;
+            border-radius: 16px;
+        }
+
+        .comesubmit {
+            border: none;
+            right: 4%;
+            text-align: center;
+            font-size: 14px;
+            width: 80px;
+            height: 30px;
+            background-color: #A5D8FA;
+            border-radius: 16px;
+        "
+        }
+
+        .modal {
+            background-color: rgba(255, 255, 255, 0.5);
+
+        }
+
+        .modal-header {
+            background-color: #A5D8FA;
+        }
+
+        .card-header {
+            background-color: #A5D8FA;
+        }
+
+        .combutton {
+            display: flex;
+        }
+
+
+        .commentfixed {
+            position: fixed;
+            display: flex;
+            bottom: -11px;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .commentwrite {
+            /*/position: relative;/*/
+            display: flex;
+            bottom: 0;
+            width: 100%;
+            z-index: 10;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .comsubmit {
+            /*/position: absolute;/*/
+            border: none;
+            right: 4%;
+            text-align: center;
+            font-size: 14px;
+            width: 80px;
+            height: 50px;
+            background-color: #A5D8FA;
+        / border-radius: 16 px;
+        /
+        }
+
+        .cardflex {
+            display: flex;
+            justify-content: space-between;
+        }
+        .comwriter{
+            padding: 0px 0px 0px 16px
+        }
+        .comcontent{
+            background-color: #A5D8FA;
+            padding: 0px 0px 0px 16px;
+            margin-bottom: 0px;
+        }
+
+        /* 글보기 칸 css*/
+        .image-container{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .poster{
+            width: 300px; height: 250px; transform: translate(1%, 23%);
+        }
+        .table-light{
+            width: 100%;
+        }
+        .ta1 {
+            width: 178px;
+            height: 5px;
+            margin: 15px 16px ;
+            padding: 16px 6px 6px 16px;
+            border-radius: 4px;
+            border: none;
+            color : black;
+            background: linear-gradient(to right, #A5D8FA 0%, #A5D8FA 90%, transparent 90%, transparent 90%);
+            position: relative;
+            left: 16px;
+        }
+        .ta2 {
+            width: 178px;
+            height: 5px;
+            margin: 15px 16px ;
+            padding: 16px 6px 6px 16px;
+            border-radius: 4px;
+            border: none;
+            color : black;
+            background-color: #A5D8FA;
+            position: relative;
+            left: 16px;
+        }
+        .startdate{
+
+        }
+        .finaldate{
+
+        }
+        .ti {
+            width: 100%;
+            height: 5px;
+            margin: 5px 16px ;
+            padding: 23px 60px 25px 16px;
+            border-radius: 4px;
+            border: none;
+            color : black;
+            background-color: #A5D8FA;
+        }
+        input::placeholder{
+            color:black;
+        }
+        .in {
+            width: 100%;
+            height: 160px;
+            margin: 16px 16px;
+            padding: 16px 20px 130px 16px;
+            border-radius: 4px;
+            border: none;
+            color : black;
+            background-color: #A5D8FA;
+        }
+    </style>
+
+
+
+</head>
+<header>
+    <div id="main">
+        <!--<h6 th:text="${scnu.category}"  style = "text-align: center;font-family: 'Hi Melody', cursive;">순행</h6>-->
+        <h6 th:switch="${scnu.category}">
+            <h6 th:case="club" class="h6">동아리 게시판</h6>
+            <h6 th:case="extracurricular" class="h6">비교과 게시판</h6>
+            <h6 th:case="school" class="h6">학교행사 게시판</h6>
+            <h6 th:case="student" class="h6">학생회 게시판</h6>
+            <h6 th:case="scholarship" class="h6">장학금 게시판</h6>
+        </h6>
+
+        <div style="top:5px; left: 3%; height : 25px; width : 25px; position: fixed; z-index: 3;">
+            <a th:href="@{/scnu/{category}(category=${scnu.category})}">
+                <button style="background-color: white; border: none;"><img style="width: 20px; height: 20px;" src="/img/back1.png"></button>
+            </a>
+        </div>
+        <div class="dropdown"
+             style="top:8px; right:5%; height : 30px; width : 30px; position: fixed; z-index: 3; display: flex;">
+            <button class="dropbtn" style="width: 30px; height: 30px; border: none;"><img style="width: 30px; height: 20px;" src="/img/menu0.png"></button>
+            <div class="dropdown-content" style="text-align: right; top:123%; background-color: transparent;">
+                <div>
+                    <form method="post" th:action="@{/recommend/{id}(id=${scnu.id})}">
+                        <button type="submit" class="comedit">추천</button>
+                    </form>
+                </div>
+                <div>
+                    <form th:if="${delete}" method="get" th:action="@{/scnu/club/{id}/delete(id=${scnu.id})}">
+                        <button type="submit" class="comedit">삭제</button>
+                    </form>
+                </div>
+                <div>
+                    <form th:if="${delete}" method="get"
+                          th:action="@{/scnu/{category}(category=${scnu.category})/{id}/edit(id=${scnu.id})}">
+                        <button type="submit" class="comedit">편집</button>
+                    </form>
+                </div>
+                <div>
+                    <form method="post"
+                          th:action="@{/recommend/{id}/(id=${scnu.id})}">
+                        <button type="submit" class="comedit">쪽지</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<body>
+
+<div class="image-container">
+    <img th:src="${scnu.filepath}" class="poster">
+</div>
+<div class="modal" id="myModal">
+    <span class="close" id="closeModal">&times;</span>
+    <img class="modal-content" id="modalImg" src="">
+</div>
+<script>
+    // 이미지 클릭 시 모달 열기
+    const imageContainer = document.querySelector(".image-container");
+    const modal = document.getElementById("myModal");
+    const modalImg = document.getElementById("modalImg");
+    const closeModal = document.getElementById("closeModal");
+
+    imageContainer.addEventListener("click", function () {
+        modal.style.display = "block";
+        modalImg.src = this.querySelector("img").src;
+    });
+
+    // 모달 닫기
+    closeModal.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    // 모달 외부 클릭 시 모달 닫기
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+</script>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64810ef38e28e2efe96520c8a962ec06"></script>
+
+</br>
+</br>
+<div class="al">
+    <div>
+        <label>제목</label>
+        <input type="text" class="ti" th:field="${scnu.title}" readonly>
+    </div>
+        <div>
+            <table class ="table-light">
+                <th class = "startdate">시작일자</th>
+                <th class = "finaldate">&nbsp&nbsp종료일자</th>
+                <tr class = "table-light" style="border-spacing: 15px;"><!-- 첫번째 줄 시작 -->
+                    <td class="ta1" th:text="${scnu.startdate}"></td>
+                    <td class="ta2" th:text="${scnu.finaldate}"></td>
+                </tr><!-- 첫번째 줄 끝 -->
+            </table>
+
+        </div>
+    <div>
+        <label>장소</label>
+        <input type="text" class="ti" th:field="${scnu.place}" readonly>
+        </br>
+        <div id="map" class="kakaomap"
+             style="width: 100%; max-width:350px; height:350px; margin:0 auto; z-index: 1"></div>
+
+    </div>
+    <div>
+        <label>소개</label>
+        <textarea type="text" th:field="${scnu.info}" class="in" readonly></textarea>
+    </div>
+    <br>
+
+    <div>
+        <input type="hidden" id="lat" th:field="${scnu.latitude}">
+        <input type="hidden" id="long" th:field="${scnu.longitude}">
+    </div>
+
+
+    <div class="card" th:each="comment, commentStat : ${comment}">
+        <div class="cardflex">
+            <p class="comwriter" th:text="${comment?.writerName}"></p>
+            <div class="combutton">
+                <button th:if="${comment.writerName eq member.nickname}" type="button" class="comedit"
+                        data-bs-toggle="modal" th:attr="data-bs-target =${'#exampleModal'+commentStat.index}">
+                    수정
+                </button>
+                <form method="get" th:action="@{/scnu/comment/{id}/delete(id=${comment.id})}">
+                    <button th:if="${comment.writerName eq member.nickname}" class="comclose" type="submit">삭제</button>
+                </form>
+            </div>
+        </div>
+        <p class="comcontent" th:text="${comment?.body}"></p>
+        <div>
+
+            <!--모달 창-->
+            <form method="post" th:action="@{/scnu/comment/{id}/update(id=${comment.id})}">
+                <div class="modal fade" data-bs-backdrop="static" th:attr="id='exampleModal'+${commentStat.index} "
+                     tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">댓글 수정</h5>
+
+                            </div>
+                            <div class="modal-body">
+                                <input type="text" th:value="${member.nickname}" name="writerName" class="form-control"
+                                       readonly>
+                                <br>
+                                <textarea type="text" th:value="${comment.body}" name="body" class="comtext"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="comclose" data-bs-dismiss="modal">닫기</button>
+                                <button type="submit" class="comedit">수정</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+<br>
+<br>
+<br>
+
+
+</body>
+
+<!-- Comments -->
+<footer>
+    <form th:action="@{/scnu/comment/{id}(id=${scnu.id})}" method="post">
+        <div class="commentfixed">
+            <input type="hidden" th:value="${member.nickname}" name="writerName" class="form-control" readonly>
+            <input type="hidden" name="scnu.id">
+            <br>
+            <div class="commentwrite">
+                <label style="width: 100%">
+                    <textarea cols="5" type="text" name="body" class="comtext"></textarea>
+                </label>
+                <button type="submit" class="comsubmit">댓글 작성</button>
+            </div>
+        </div>
+
+
+    </form>
+
+
+</footer>
+
+
+<script>
+
+    const lat = document.querySelector("#lat").value
+    const long = document.querySelector("#long").value
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(lat, long), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+
+    latlng = new kakao.maps.LatLng(lat, long)
+
+    console.log(latlng)
+
+    // 지도를 클릭한 위치에 표출할 마커입니다
+    var marker = new kakao.maps.Marker({
+        // 지도 중심좌표에 마커를 생성합니다
+        position: latlng
+    });
+    // 지도에 마커를 표시합니다
+    marker.setMap(map);
+
+    // 지도에 클릭 이벤트를 등록합니다
+    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+    kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+
+        // 클릭한 위도, 경도 정보를 가져옵니다
+        var latlng = mouseEvent.latLng;
+
+    });
+
+</script>
+</html>

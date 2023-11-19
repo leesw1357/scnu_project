@@ -1,0 +1,45 @@
+
+#main {
+    transition: margin-left 0.4s;
+    padding: 5px;
+    height: 45px;
+}
+
+/*사이드바 드롭다운*/
+.app-info-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#app-info-button {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.app-info-content {
+    display: none;
+    position: absolute;
+    background-color:rgba(255, 255, 255, 0.7);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.app-info-content a {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.app-info-content a:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+#btn-scnu{
+    border-radius: 20px 20px 20px 20px;
+    background-color : #53befa;
+    border-color: #53befa;
+}

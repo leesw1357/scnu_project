@@ -1,0 +1,130 @@
+
+.btn-sub{
+    background: #5ABEFF;
+    background-image: -webkit-linear-gradient(top, #5ABEFF, #46BEFF);
+    background-image: -moz-linear-gradient(top, #5ABEFF, #46BEFF);
+    background-image: -ms-linear-gradient(top, #5ABEFF, #46BEFF);
+    background-image: -o-linear-gradient(top, #5ABEFF, #46BEFF);
+    background-image: linear-gradient(to bottom, #5ABEFF, #46BEFF);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 10px 17px 10px 17px;
+    text-decoration: none;
+    border: none;
+    right: 55%;
+    position: fixed;
+}
+
+.btn-back{
+    background: #5ABEFF;
+    background-image: -webkit-linear-gradient(top, #5ABEFF, #46BEFF);
+    background-image: -moz-linear-gradient(top, #5ABEFF, #46BEFF);
+    background-image: -ms-linear-gradient(top, #5ABEFF, #46BEFF);
+    background-image: -o-linear-gradient(top, #5ABEFF, #46BEFF);
+    background-image: linear-gradient(to bottom, #5ABEFF, #46BEFF);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 10px 17px 10px 17px;
+    text-decoration: none;
+    border: none;
+    right: 25%;
+    position: fixed;
+}
+.sub{
+    position : fixed;
+    top:8px; right:3%;
+    border: none;
+    background-color: white;
+}
+.back {
+    left: 5%;
+    position: fixed;
+    top:8px;
+
+}
+.backicon{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+}
+
+
+/*사이드바 스타일*/
+.sidebar {
+    height: 100%;
+    width: 0px;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.3s;/*펼침속도*/
+    padding-top: 60px;
+    position: absolute;
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+
+/*메뉴열기 hover 시*/
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+
+.sidebar .closebtn {
+    position: absolute;
+    width: 250px;
+    top:2%;
+    font-size: 25px;
+    margin-left: 0;
+    text-align : left;
+}
+.cl{
+    position:absolute;
+    top: 0;
+    right:0;
+
+}
+.menu-content{
+    margin-top : 12%;
+
+}
+
+.openbtn {
+    font-size: 15px;
+    cursor: pointer;
+    background: white;
+    border: none;
+    color: white;
+    position:absolute;top:3px;right:1%; width : 55px; height: 32px; overflow:hidden;z-index:3;
+}
+.write-menu{
+    border: none;
+    color: white;
+    position:absolute;top:3px;right:1%; width: 35px; height: 32px; overflow:hidden;z-index:3;
+
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+#main {
+    transition: margin-left 0.4s;
+    padding: 5px;
+    height: 45px;
+}

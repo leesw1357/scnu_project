@@ -1,0 +1,320 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="stylesheet" type="text/css" href="/css/album.css"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Album example · Bootstrap v5.1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
+
+    <!--sidebar-->
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/css/style3.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="" rel="stylesheet">
+
+    <style>
+        /*header*/
+        #main{
+            width:100%;
+            height:100%;
+            position:relative;
+            overflow:hidden;
+        }
+        /*네비바*/
+        .mainwidget{
+            display: flex;
+            position: fixed;
+            justify-content: space-between;
+            width: 100%;
+            border-radius: 20px 20px 0px 0px;
+            height: 100px;
+
+            background-color: white;
+            z-index: 1;
+            padding: 16px 16px 16px 16px;
+            margin: -15px 0px 0px 0px;
+        }
+        /*밑 위젯모음*/
+        .opensidebar{
+            border: none;
+            background-color: white;
+            margin-bottom: 12%;
+            margin-top:-1%;
+        }
+        /*아이콘*/
+        .bi{
+            width: 32px;
+            height: 32px;
+            font-size: 28px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+<div class="clubalbum">
+
+    <!--사이드 메뉴 영역-->
+    <div class="sidebar">
+        <div class="closebtn">
+            <a href="/scnu/main"><img src="/img/mark.png"/>
+            <span>순행</span></a>
+            <span class="cl" onclick="closeMenu()"><img src="/img/xbox.png" style="width: 25px; height: 25px;"></span>
+        </div>
+
+        <ul class="nav nav-pills flex-column mb-auto menu-content">
+            <li class="nav-item">
+                <a href="/scnu" class="nav-link link-dark" aria-current="page">
+                    <i class="bi bi-door-open"></i>
+                    &nbsp전체글보기
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/scnu/club" class="nav-link link-dark" aria-current="page">
+                    <i class="bi bi-door-open"></i>
+                    &nbsp동아리
+                </a>
+            </li>
+            <li>
+                <a href="/scnu/school" class="nav-link link-dark">
+                    <i class="bi bi-door-open-fill"></i>
+                    &nbsp학교 행사
+                </a>
+            </li>
+            <li>
+                <a href="/scnu/student" class="nav-link link-dark">
+                    <i class="bi bi-door-closed-fill"></i>
+                    &nbsp학생회 행사
+                </a>
+            </li>
+            <li>
+                <a href="/scnu/scholarship" class="nav-link link-dark">
+                    <i class="bi bi-door-closed"></i>
+                    &nbsp장학금
+                </a>
+            </li>
+            <li>
+                <a href="/scnu/extracurricular" class="nav-link link-dark">
+                    <i class="bi bi-door-closed"></i>
+                    &nbsp비교과
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="bi bi-calendar"></i>
+                    &nbsp캘린더
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="bi bi-chat"></i>
+                    &nbsp채팅
+                </a>
+            </li>
+            <li>
+                <a th:href="${member.id}" class="nav-link link-dark">
+                    <i class="bi bi-bookmark-dash"></i>
+                    내가쓴글
+                </a>
+            </li>
+
+
+        </ul>
+
+
+        <hr>
+        <div class="app-info-dropdown">
+            <i class="bi bi-gear" style="margin-left: 35px;"></i><button id="app-info-button">앱 정보</button>
+            <div class="app-info-content">
+                <!-- 다양한 앱 정보 항목을 표시할 수 있음 -->
+                <form th:action="@{/logout}" method="post">
+                    <button  onclick="location.href='/'" type="submit" id="logout-button">
+                        로그아웃
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <header>
+        <!--화면영역-->
+        <div id="main">
+            <div class="album-log">
+                <form th:action="'/scnu/'+${category}+'/search'" class = "album-log" method="post">
+                  <a href="/scnu/main"> <img class = "searchimg" src = "/img/scnu.png"></a>
+                    <input type = "text" id = "albumsearch" name="title">
+                        <button type="submit" id = "searchbar">
+                            <img src = "/img/search3.png">
+                        </button>
+<!--                        <a href="/clubScnu/"><button class="btn btn-primary btn-round">뒤로가기</button></a>-->
+                </form>
+            </div>
+        </div>
+
+
+
+    </header>
+
+
+    <div class="album py-2 bg-light" th:each="scnu, scnuStat : ${scnu}">
+        <div class="container">
+
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img th:src="${scnu.filepath}?: _" th:id="'imageElement' + ${scnuStat.index}">
+                        <!--<img th:src= "${scnu.filepath}" style = "width: 200px; height: 200px; margin : auto;">-->
+                        <div class="card-body">
+                            <p class="card-text">
+                                <span th:text="${scnu.title}"> title </span>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a th:href="@{/scnu/{category}(category=${scnu.category})/{id}(id=${scnu.id})}" class="snip1535">상세보기</a>
+                                </div>
+                                <small>추천수 : <span class="text-muted" th:text="${scnu.recommendationCount}"></span>
+                                    <br>
+                                    작성번호 : <span class="text-muted" th:text="${scnu.id}"></span>
+                                    <br>
+                                    작성일자 : <span class="text-muted" th:text="${scnu.modifiedDate}"></span>
+                                    <br>
+                                    작성자 : <span class="text-muted" th:text="${scnu.member?.getName()}"></span>
+                                </small>
+                                <input type="hidden" th:id="'filepath' + ${scnuStat.index}" th:value="${scnu.filepath}">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+<script>
+    function openMenu() {
+        document.getElementById("main").style.marginRight = "250px";
+        document.querySelector('.sidebar').style.width = "250px";
+        document.querySelector('.opensidebar').style.display = 'none';
+    }
+
+    function closeMenu() {
+        document.getElementById("main").style.margiRight = "0";
+        document.querySelector('.sidebar').style.width = "0";
+        document.querySelector('.opensidebar').style.display = 'block';
+    }
+</script>
+
+
+<script>
+    // 앱 정보 버튼을 클릭하면 드롭다운 메뉴를 열고 닫는 이벤트 핸들러를 추가합니다.
+    document.getElementById("app-info-button").addEventListener("click", function () {
+        var dropdown = document.querySelector(".app-info-content");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    });
+
+    // 다른 곳을 클릭하면 드롭다운 메뉴를 닫습니다.
+    window.addEventListener("click", function (event) {
+        var dropdown = document.querySelector(".app-info-content");
+        if (!event.target.matches("#app-info-button")) {
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            }
+        }
+    });
+</script>
+<!--버튼 스타일-->
+<script>
+    $(".hover").mouseleave(
+        function () {
+            $(this).removeClass("hover");
+        });
+</script>
+
+<script th:inline="javascript">
+
+    const scnuList = [[${scnu}]];
+    for (let i = 0; i < scnuList.length; i++) {
+        const imageElement = document.getElementById('imageElement' + i);
+        const imageUrl = document.getElementById('filepath' + i).value;
+        const imageWidth = '200px'; // Set the desired width for the image
+        const imageHeight = '200px'; // Set the desired height for the image
+
+
+        // Check if the image URL is available
+        if (imageUrl) {
+            imageElement.style.width = imageWidth;
+            imageElement.style.height = imageHeight;
+            imageElement.style.margin = 'auto';
+            imageElement.style.borderRadius = '15px';
+        }
+    }
+
+
+</script>
+
+
+</body>
+
+<footer style="position: fixed; bottom: 8%;">
+<!--    <div style="right : 30%; bottom: 5px; right: 5px;">-->
+<!--        <a href="/scnu/write" class="write"><img class="writeicon" src="/img/write2.png"></a>-->
+<!--        <a href="#" class="up"><img class="upicon" src="/img/top1.png"></a>-->
+<!--    </div>-->
+    <div class="mainwidget">
+        <a href="#" style="color:black;"><i class="bi bi-arrow-up"></i></a>
+        <a href="/scnu/write" style="color:black;"><i class="bi bi-pencil-fill"></i></a>
+        <a href="" style="color:black;"><i class="bi bi-chat-left"></i></a>
+        <button class="opensidebar" onclick="openMenu()"><i class="bi bi-list"></i></button>
+    </div>
+
+</footer>
+
+
+
+
+</html>

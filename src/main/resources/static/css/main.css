@@ -1,0 +1,199 @@
+/*밑 위젯모음*/
+.opensidebar{
+    border: none;
+    background-color: white;
+    margin-bottom: 12%;
+    margin-top:-1%;
+}
+
+
+
+/*사이드바 드롭다운*/
+.app-info-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#app-info-button {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.app-info-content {
+    display: none;
+    position: absolute;
+    background-color:rgba(255, 255, 255, 0.7);
+    min-width: 80px;
+    z-index: 1;
+    margin-left: 45%;
+}
+
+.app-info-content a {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.app-info-content a:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+/*마커를 클릭했을 때 상세보기 스타일*/
+
+.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+.wrap * {padding: 0;margin: 0;}
+.wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+.wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+.info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+.info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.info .close:hover {cursor: pointer;}
+.info .body {position: relative;overflow: hidden;}
+.info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+.desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+.info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+.info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+.info .link {color: #5085BB;}
+
+/*사이드바 스타일*/
+ .sidebar {
+     height: 93%;
+     width: 0px;
+     z-index: 1;
+     top: 0;
+     left: 0;
+     background-color: rgba(255, 255, 255, 0.7);
+     overflow-x: hidden;
+     transition: 0.3s;/*펼침속도*/
+     padding-top: 60px;
+     position: absolute;
+ }
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+
+/*메뉴열기 hover 시*/
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+
+.sidebar .closebtn {
+    position: absolute;
+    width: 250px;
+    top:2%;
+    font-size: 25px;
+    margin-left: 0;
+    text-align : left;
+}
+.cl{
+    position:absolute;
+    top: 0;
+    right:0;
+
+}
+.menu-content{
+    margin-top : 12%;
+}
+
+.openbtn {
+    font-size: 15px;
+    cursor: pointer;
+    background: white;
+    border-radius: 20%;
+    border-width: 5px;
+    color: white;
+    position:absolute;top:10px;left:10px;width:80px;height:75px;overflow:hidden;z-index:1;
+
+
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+#main {
+    transition: margin-left 0.4s;
+    padding: 16px;
+}
+
+
+/*지도 =- 버튼*/
+.map_wrap {position:relative;overflow:hidden;width:100%;height:100vh;}
+
+.custom_typecontrol {position:absolute;top:10px;right:10px;overflow:hidden;width:130px;height:30px;margin:0;padding:0;z-index:1;font-size:12px;font-family:'Malgun Gothic', '맑은 고딕', sans-serif;}
+.custom_typecontrol span {display:block;width:65px;height:30px;float:left;text-align:center;line-height:30px;cursor:pointer;}
+.custom_typecontrol .selected_btn {color:#fff;background:#425470;background:linear-gradient(#425470, #5b6d8a);}
+.custom_typecontrol .selected_btn:hover {color:#fff;}
+/* 줌  + -키 css 설정 */
+.custom_zoomcontrol {position:absolute;top:200px;right:10px;width:50px;height:100px;overflow:hidden;z-index:1; background-color: rgba(0,0,0,0);}
+.custom_zoomcontrol span {display:block;width:50px;height:50px;text-align:center;cursor:pointer;  }
+.custom_zoomcontrol span:first-child{border-bottom:1px solid #bfbfbf; }
+
+
+/*사이드바 로그아웃 버튼*/
+.logout-button{
+    border: none;
+    background-color: skyblue;
+}
+
+p{
+    font-weight: 900;
+    font-size: large;
+}
+/*아이콘*/
+.bi{
+    width: 32px;
+    height: 32px;
+    font-size: 28px;
+
+}
+
+#main{
+    width:100%;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+.cl{
+    width: 25px;
+    height: 25px;
+}
+
+/*네비바*/
+.mainwidget{
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    width: 100%;
+    height: 78px;
+    border-radius: 20px 20px 0px 0px;
+    margin-top: -65px;
+
+    background-color: white;
+    z-index: 1;
+    padding: 16px 16px 16px 16px;
+
+}
+/*내 위치 고정 버튼*/
+.custom_geolocation {
+    position:absolute;
+    top:300px;right:10px;
+    width:50px;
+    height:50px;
+    overflow:hidden;
+    z-index:1;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
+}

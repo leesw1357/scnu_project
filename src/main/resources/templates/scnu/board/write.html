@@ -1,0 +1,310 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/write.css">
+    <script src="js/write.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>순행</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/src/main/resources/static/index.js"></script>
+    <!--카카오 api-->
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64810ef38e28e2efe96520c8a962ec06"></script>
+
+    <!--sidebar-->
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/css/style3.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+    <!-- 글꼴 스타일-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+</head>
+
+
+<body>
+<header style="position: fixed; z-index: 2; width: 100%; background-color: white; top:0;">
+    <div id="main" style="text-align: center; padding: 10px 5px 5px 5px;">
+        <!--        <a style = "text-align: center; top:5%; font-family: 'Hi Melody', cursive;">글쓰기</a>-->
+        글쓰기
+    </div>
+</header>
+
+<style>
+    /*전체부분*/
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    body {
+        width: 100%;
+        height: 100%;
+        font-family: 'Hi Melody';
+        font-size: 20px;
+    }
+
+    /* 글쓰기 부분 */
+    .field-error {
+        color: red;
+    }
+
+    .poster {
+        width: 300px;
+        height: 250px;
+        transform: translate(1%, 23%);
+    }
+
+    .ti {
+        width: 100%;
+        height: 5px;
+        margin: 16px 1px;
+        padding: 23px 40px 25px 16px;
+        border-radius: 4px;
+        border: none;
+        color: black;
+        background-color: #A5D8FA;
+    }
+
+    input::placeholder {
+        color: black;
+    }
+
+    .in {
+        width: 100%;
+        height: 160px;
+        margin: 16px 0px;
+        padding: 16px 20px 130px 16px;
+        border-radius: 4px;
+        border: none;
+        color: black;
+        background-color: #A5D8FA;
+    }
+
+    .fi {
+        width: 100%;
+        height: 5px;
+        margin: 16px 0px;
+        padding: 16px 40px 60px 16px;
+        border-radius: 4px;
+        border: none;
+        color: black;
+        background-color: #A5D8FA;
+    }
+
+    .container {
+        width: 100%;
+        margin: 8px 8px 8px 0px;
+        padding: 8px 0px 8px 0px;
+        border-radius: 4px;
+        border: none;
+    }
+    .frame{
+        transform: translate(14%, 5%);
+    }
+
+</style>
+
+<style>
+
+</style>
+
+
+<div id="map" style=" width: 100%; height: 40%;margin:0 auto; z-index: 1"></div>
+<div id="clickLatlng"></div>
+<!-- name = clubScnu-->
+<form action="/scnu/write" method="post" name="clubScnu" th:object="${clubScnu}" enctype="multipart/form-data">
+    <div class="al">
+        <style>
+            .al {
+                margin: 8px 16px;
+            }
+        </style>
+        <div>
+            <input type="radio" name="category" value="club" checked="checked">동아리
+            <input type="radio" name="category" value="school">학교행사
+            <input type="radio" name="category" value="student">학생회행사
+            <input type="radio" name="category" value="scholarship">장학금
+            <input type="radio" name="category" value="extracurricular">비교과
+        </div>
+
+        <div>
+            <label for="title">제목</label>
+            <br>
+            <input type="text" id="title" th:field="*{title}"
+                   th:errorclass="field-error" class="ti" input placeholder="제목 입력">
+        </div>
+        <div class="field-error" th:errors="*{title}">
+            제목 오류
+        </div>
+        <div>
+            <label for="startdate" class="form-label1">시작 일자</label>
+            <br>
+            <input type="datetime-local" th:field="*{startdate}" class="ti" id="startdate" placeholder="일정을 입력해주세요.">
+        </div>
+        <div>
+            <label for="finaldate" class="form-label2">종료 일자</label>
+            <br>
+            <input type="datetime-local" th:field="*{finaldate}" class="ti" id="finaldate"
+                   placeholder="일정을 입력해주세요.">
+        </div>
+        <div>
+            <label for="place" class="form-label4">장소</label>
+            <br>
+            <input type="text" th:field="*{place}" class="ti" id="place">
+        </div>
+        <div style="height: 0px;">
+            <label for="latitude" class="form-label4"></label>
+            <input type="hidden" th:field="*{latitude}" class="form-control" id="latitude" value="">
+        </div>
+        <div style="height: 0px;">
+            <label for="longitude" class="form-label4"></label>
+            <input type="hidden" th:field="*{longitude}" class="form-control" id="longitude" value="">
+        </div>
+        <div class="container">
+            <input name="file" type="file" class='fi'>
+            <div class="frame">
+            </div>
+        </div>
+
+        <div>
+            <label for="info" class="form-label5">소개</label>
+            <br>
+            <textarea class="in" th:field="*{info}" rows="7" id="info"></textarea>
+        </div>
+
+    </div>
+    <footer>
+        <div style="top:5px; right: 5%; height : 45px; width : 45px; position: fixed; z-index: 4;">
+            <button type="submit" class="sub"
+                    style="border: none; right: 5%; text-align: center; font-size: 14px; width: 35px; height: 35px; background-color: #A5D8FA; border-radius: 15px;">
+                완료
+            </button>
+        </div>
+        <div style="top:5px; left:5%; height : 45px; width : 45px; position: fixed; z-index: 3;">
+            <a href="/scnu" class="back" style="background-color: white; width: 30px; height: 30px; top:5px; left:5%;"><img class="backicon" style="position:relative;top:5px; left:5%; width: 25px; height: 25px;" src="/img/back1.png"></a>
+        </div>
+    </footer>
+</form>
+
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(34.967901, 127.479367), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+    // 지도를 클릭한 위치에 표출할 마커입니다
+    var marker = new kakao.maps.Marker({
+        // 지도 중심좌표에 마커를 생성합니다
+        position: map.getCenter()
+    });
+    // 지도에 마커를 표시합니다
+    marker.setMap(map);
+
+    // 지도에 클릭 이벤트를 등록합니다
+    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+    kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+
+        // 클릭한 위도, 경도 정보를 가져옵니다
+        var latlng = mouseEvent.latLng;
+
+        // 마커 위치를 클릭한 위치로 옮깁니다
+        marker.setPosition(latlng);
+
+        const xyz = {
+            latitude: latlng.getLat(),
+            longitude: latlng.getLng()
+        };
+
+        console.log(xyz);
+
+        // 값전달
+        const latitude = latlng.getLat();
+        document.clubScnu.latitude.value = latitude;
+        const longitude = latlng.getLng();
+        document.clubScnu.longitude.value = longitude;
+
+        var resultDiv = document.getElementById('clickLatlng');
+    });
+
+</script>
+
+
+</body>
+
+<script>
+    window.addEventListener('load', function () {
+
+        const container = document.querySelector('.container');
+        const frame = container.querySelector('.frame');
+        const fileInput = container.querySelector('input[type="file"]');
+
+        fileInput.addEventListener('input', () => {
+
+            if (!isImage(fileInput.files[0])) {
+                alert('Image 파일만 업로드 할 수 있습니다.');
+                return;
+            }
+            const reader = new FileReader();
+            reader.addEventListener('load', () => {
+
+                const img = document.createElement('IMG');
+                img.style.width = '75%';
+                img.style.height = 'auto';
+                img.classList.add('thumbnail');
+                img.src = reader.result;
+
+                frame.insertAdjacentElement('beforeend', img);
+            });
+
+            reader.readAsDataURL(fileInput.files[0]);
+        });
+
+        function isImage(file) {
+            return file.type.indexOf('image') >= 0;
+        }
+
+        //추가
+
+    });
+</script>
+
+
+<script>
+    document.getElementById("submit btn").onclick = function () {
+        alert("글이 작성되었습니다.");
+    };
+</script>
+
+</html>

@@ -1,0 +1,256 @@
+/*밑 위젯모음*/
+.opensidebar{
+    border: none;
+    background-color: white;
+}
+
+/*사이드바 드롭다운*/
+.app-info-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#app-info-button {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.app-info-content {
+    display: none;
+    position: absolute;
+    background-color:rgba(255, 255, 255, 0.7);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.app-info-content a {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.app-info-content a:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+    <!--앨범 css -->
+      .img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    #write {
+      position: fixed;
+      bottom: 20px;
+      right: 700px;
+
+      border: none;
+      border-radius: 16px;
+      background: royalblue;
+      color: white;
+      padding: 12px;
+      font-weight: bold;
+      box-shadow: 0px 5px 15px gray;
+      cursor: pointer;
+    }
+/*글쓰기, 위로가기 버튼*/
+    .write{
+        right : 39%;
+        position : fixed;
+        bottom: 5px;
+
+    }
+    .up {
+        right: 53%;
+        position: fixed;
+        bottom: 5px;
+    }
+    .writeicon{
+        width: 35px;
+        height: 35px;
+    }
+    .upicon{
+        width: 35px;
+        height: 35px;
+    }
+/*    상세보기 버튼*/
+    @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
+    .snip1535 {
+      background-color: #5ABEF5;
+      border: none;
+      /*  글씨 색*/
+      color: white;
+      cursor: pointer;
+      display: inline-block;
+      font-family: 'BenchNine', Arial, sans-serif;
+      font-size: 1em;
+      font-size: 18px;
+      line-height: 1em;
+      margin: auto;
+      outline: none;
+      padding: 12px 40px 10px;
+      position: relative;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .snip1535:before,
+    .snip1535:after {
+      border-color: transparent;
+      -webkit-transition: all 0.25s;
+      transition: all 0.25s;
+      border-style: solid;
+      border-width: 0;
+      content: "";
+      height: 24px;
+      position: absolute;
+      width: 24px;
+    }
+    .snip1535:before {
+      border-color: #5ABEF5;
+      border-right-width: 2px;
+      border-top-width: 2px;
+      right: -5px;
+      top: -5px;
+    }
+    .snip1535:after {
+      border-bottom-width: 2px;
+      border-color: #5ABEF5;
+      border-left-width: 2px;
+      bottom: -5px;
+      left: -5px;
+    }
+    .snip1535:hover,
+    .snip1535.hover {
+        color: white;
+      background-color: #288CD2;
+    }
+    .snip1535:hover:before,
+    .snip1535.hover:before,
+    .snip1535:hover:after,
+    .snip1535.hover:after {
+      height: 100%;
+      width: 100%;
+    }
+    /*검색창 스타일*/
+    #searchbar{
+        position: absolute;
+        top : 23%;
+        right: 15px;
+        margin: 0;
+        border : none;
+        background: transparent;
+    }
+    #albumsearch{
+        width : auto;
+        height: 60px;
+        margin-left : 65px;
+        border : 1px;
+        border-radius: 33px;
+        border-color: white;
+        outline: none;
+        font-size: 25px;
+    }
+    .album-log{
+        width : 100%;
+        height: 65px;
+        border : 1px solid ;
+        border-radius: 33px;
+        border-color: #1E90FF;
+        position: relative;
+        display: flex;
+    }
+    .searchimg{
+        position: absolute;
+        width: 50px;
+        top: 13%;
+        left: 10px;
+        margin: 0;
+    }
+    /*사이드바 스타일*/
+    .sidebar {
+        height: 100%;
+        width: 0px;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        overflow-x: hidden;
+        background-color: white;
+        transition: 0.3s;/*펼침속도*/
+        padding-top: 60px;
+        position: absolute;
+    }
+
+    .sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+
+    /*메뉴열기 hover 시*/
+    .sidebar a:hover {
+        color: #f1f1f1;
+    }
+
+
+    .sidebar .closebtn {
+        position: absolute;
+        width: 250px;
+        top:2%;
+        font-size: 25px;
+        margin-left: 0;
+        text-align : left;
+    }
+    .cl{
+        position:absolute;
+        top: 0;
+        right:0;
+
+    }
+    .menu-content{
+        margin-top : 12%;
+    }
+
+    .openbtn {
+        font-size: 15px;
+        cursor: pointer;
+        background: rgba(255,255,255,0);
+        border: none;
+        /*border-radius: 20%;*/
+        /*border-width: 2px;*/
+        /*border-color: white;*/
+        color: white;
+        position:absolute;top:10px;right:10px;width:50px;height:75px;overflow:hidden;z-index:1;
+
+
+    }
+
+    .openbtn:hover {
+        background-color: #444;
+    }
+
+    #main {
+        transition: margin-right 0.4s;
+        padding: 16px;
+        height : 100px;
+    }

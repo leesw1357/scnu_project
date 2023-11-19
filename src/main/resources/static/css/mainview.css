@@ -1,0 +1,111 @@
+#btn-scnu{
+    border-radius: 20px 20px 20px 20px;
+    background-color : #53befa;
+    border-color: #53befa;
+}
+
+/*사이드바 스타일*/
+.sidebar {
+    height: 100%;
+    width: 0px;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.3s;/*펼침속도*/
+    padding-top: 60px;
+    position: absolute;
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+
+/*메뉴열기 hover 시*/
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+
+.sidebar .closebtn {
+    position: absolute;
+    width: 250px;
+    top:2%;
+    font-size: 25px;
+    margin-left: 0;
+    text-align : left;
+}
+.cl{
+    position:absolute;
+    top: 0;
+    right:0;
+
+}
+.menu-content{
+    margin-top : 12%;
+
+}
+
+.openbtn {
+    font-size: 15px;
+    cursor: pointer;
+    background: white;
+    border: none;
+    color: white;
+    position:absolute;top:3px;right:1%; width : 55px; height: 32px; overflow:hidden;z-index:3;
+}
+.write-menu{
+    border: none;
+    color: white;
+    position:absolute;top:3px;right:1%; width: 35px; height: 32px; overflow:hidden;z-index:3;
+
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+#main {
+    transition: margin-left 0.4s;
+    padding: 10px;
+    height: 45px;
+}
+
+
+/*이미지 모달 스타일*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+/*/ 이미지 스타일 /*/
+.modal-content {
+    top:100px;
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 120%;
+}
+
+/*/ 닫기 버튼 스타일 *!*/
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
